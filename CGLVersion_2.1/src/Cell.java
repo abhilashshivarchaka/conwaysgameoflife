@@ -1,21 +1,21 @@
 
 public class Cell {
-	int x;
-	int y;
+	int rows;
+	int colos;
 	boolean isAlive;
 	
-	public Cell(int x, int y, boolean isAlive) {
-		this.x=x;
-		this.y=y;
+	public Cell(int rows, int colos, boolean isAlive) {
+		this.rows=rows;
+		this.colos=colos;
 		this.isAlive=isAlive;
 		
 	}
 	public String toString() {
 		if(this.isAlive) {
-			return "The cell at" +" "+ this.x+","+this.y+" " +"is Alive.";
+			return "The cell at" +" "+ this.rows+","+this.colos+" " +"is Alive.";
 			
 		}else {
-			return "The cell at" +" "+ this.x+","+this.y+" " +"is Dead.";
+			return "The cell at" +" "+ this.rows+","+this.colos+" " +"is Dead.";
 		}
 	}
 

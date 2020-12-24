@@ -9,19 +9,20 @@ class Board {
 		this.coloms=coloms;
 		this.Cellgrid=new boolean[rows][coloms];
 	}
-	public String toString() {
-		String d = "";
+	public int[][] current() {
+		int[][] d = new int[this.rows][this.coloms] ;
+		
 		for(int i=0; i<this.rows;i++) {
 			for(int j=0; j<this.coloms;j++) {
 				if(Cellgrid[i][j]) {
-					d+="*";	
+					d[i][j]+=1;	
 				}
 				else {
-					d+=".";
+					d[i][j]+=0;
 				}
 				
 				
-			}d+='\n';
+			}
 			
 		}return d;
 	}
