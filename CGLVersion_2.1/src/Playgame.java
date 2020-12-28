@@ -1,3 +1,4 @@
+
 class Playgame{
 	public int[][] nextgen(int board[][]){
 		int rows = board.length;
