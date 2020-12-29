@@ -24,7 +24,7 @@ import javafx.scene.shape.Rectangle;
  * <p> Copyright: Lynn Robert Carter © 2018-05-06 </p>
  * 
  * @author Lynn Robert Carter
- * 
+ * @author Abhilash<2020501034>
  * @version 2.03	2018-05-07 An implementation baseline for JavaFX graphics
  * 
  */
@@ -77,10 +77,10 @@ public class UserInterface {
 	// These attributes define the Board used by the simulation and the graphical representation
 	// There are two Boards. The previous Board and the new Board.  Once the new Board has been
 	// displayed, it becomes the previous Board for the generation of the next new Board.
-	private Board oddGameBoard = new Board();		// The Board for odd frames of the animation
+	private Board oddGameBoard = new Board(boardSizeWidth,boardSizeHeight);		// The Board for odd frames of the animation
 	private Pane oddCanvas = new Pane();			// Pane that holds its graphical representation
 	
-	private Board evenGameBoard =  new Board();	// The Board for even frames of the animation
+	private Board evenGameBoard =  new Board(boardSizeWidth,boardSizeHeight);	// The Board for even frames of the animation
 	private Pane evenCanvas = new Pane();			// Pane that holds its graphical representation
 
 	private boolean toggle = true;					// A two-state attribute that specifies which
@@ -284,7 +284,7 @@ public class UserInterface {
 				index++;
 			}
 			oddGameBoard.createBoard(l);
-			
+			draw();
 			
 		}
 		catch (Exception e)  {
@@ -325,6 +325,15 @@ public class UserInterface {
 		// Use the toggle to flip back and forth between the current generation and next generation boards.
 		
 		// Your code goes here...
+		if(toggle) {
+			evenGameBoard.Cellgrid=oddGameBoard.nextgen();
+			toggle=false;
+		}
+		else {
+			oddGameBoard.Cellgrid=evenGameBoard.nextgen();
+			toggle=true;
+		}
+		draw();
 	}
 
 	/**********
@@ -402,5 +411,26 @@ public class UserInterface {
 		// Should the execution reach here, the input file appears to be valid
 		errorMessage_FileContents = "";
 		return true;							// End of file found 
+	}
+//	
+	public void draw() {
+		Board board;
+		if(toggle) {
+			board = oddGameBoard;
+			
+		}
+		else {
+			board = evenGameBoard;
+			
+		}
+		for (int i=0;i<board.rows;i++) {
+			for (int j=0;j<board.coloms;j++) {
+				if(board.Cellgrid[i][j]==true) {
+					Rectangle rectangle = new Rectangle(5,5,Color.BLACK);
+					rectangle.relocate(6*i, 6*j);
+					window.getChildren().add(rectangle);
+				}
+			}
+		}
 	}
 }
