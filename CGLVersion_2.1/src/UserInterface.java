@@ -333,6 +333,7 @@ public class UserInterface {
 			oddGameBoard.Cellgrid=evenGameBoard.nextgen();
 			toggle=true;
 		}
+		window.getChildren().remove(window);
 		draw();
 	}
 
@@ -430,7 +431,11 @@ public class UserInterface {
 					rectangle.relocate(6*i, 6*j);
 					window.getChildren().add(rectangle);
 				}
-			}
+				else{
+					Rectangle rectangle = new Rectangle(5,5,Color.WHITE);
+					rectangle.relocate(6*i, 6*j);
+					window.getChildren().add(rectangle);}
+				}
 		}
 	}
 }
